@@ -36,7 +36,8 @@ def index():
 	required_ip_loc = dict()
 	if request.method == "POST":
 		if request.form.get("getMyIPDetails") == "myIPDetails":
-			ip_address = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)  
+			ip_address = request.environ.get('HTTP_X_FORWARDED_FOR', request.remote_addr)
+			print(ip_address)
 			required_ip_loc = getIPDetails(ip_address)
 			return render_template("index.html", ip_location=required_ip_loc)
 
