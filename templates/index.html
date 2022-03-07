@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>IP Locator</title>
+	<style type="text/css">
+		.container{
+			text-align: center;
+			width: 80%;
+			margin: auto;
+			background-color: #ffe45c;
+		}
+		.header-container{
+			background-color: yellow;
+			padding: 10px;
+			border-bottom: 1px solid grey;
+		}
+		.my-button{
+			background-color: #a7f2f2;
+			padding: 5px;
+		}
+		.my-button:hover{
+			background-color: #4dd6d6;
+		}
+		.search_table{
+			border-bottom: 1px solid grey;
+			padding-bottom: 20px;
+			padding-right: 20px;
+		}
+		table{
+			text-align: right;
+			margin: auto;
+			width: 100%;
+		}
+		input{
+			padding: 5px;
+		}
+		.output-label{
+			text-align: right;
+		}
+		.output{
+			text-align: left;
+		}
+		a{
+			text-decoration: none;
+			color: black;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1 class="header-container">IP Location Collector App</h1>
+		<table class="search_table">
+			<tr>
+				<td>
+					<form action="/" method="post">
+						<button class ="my-button" type="submit" name="getMyIPDetails" value="myIPDetails">Get My IP Details</button>
+					</form>
+				</td>
+				<td>
+					<form action="/" method="post">
+						<label>Enter IP Address</label>
+						<input type="text" name="ip_address" placeholder="Enter IP Address">
+						<input class="my-button" type="submit" name="getIPDetails" value="getIPDetails">
+					</form>
+				</td>
+			</tr>
+		</table>
+		{% if ip_location %}
+		<table>
+		{%for value in ip_location%}
+		<tr>
+			<td class="output-label">{{value}}:</td>
+			<td class="output"> {{ip_location[value]}}</td>
+		</tr>
+		{% endfor %}
+		</table>
+		<br>
+		<button class="my-button"><a href="{{url_for('index')}}">Clear Result</a></button>
+		{% endif %}
+
+		<h3 style="padding:20px; font-style: italic;">Powered by <a href="http://drukinfotech.com/" style="text-decoration: none; color:blue">Druk Information and Technology</a></h3>
+
+	</div>
+
+</body>
+</html>
